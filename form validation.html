@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+</head>
+<body>
+
+  <form id="myForm" onsubmit="return validateForm()">
+    <table>
+      <tr>
+        <td><label>First Name</label></td>
+        <td><input type="text" id="firstName"></td>
+        <td><span id="firstNameError"></span></td>
+      </tr>
+      <tr>
+        <td><label>Last Name</label></td>
+        <td><input type="text" id="lastName"></td>
+        <td><span id="lastNameError"></span></td>
+      </tr>
+      <tr>
+        <td><label>E-Mail</label></td>
+        <td><input type="email" id="email"></td>
+        <td><span id="emailError"></span></td>
+      </tr>
+      <tr>
+        <td><label>Phone #</label></td>
+        <td><input type="text" id="phone"></td>
+        <td><span id="phoneError"></span></td>
+      </tr>
+      <tr>
+        <td><label>Address</label></td>
+        <td><input type="text" id="address"></td>
+        <td><span id="addressError"></span></td>
+      </tr>
+      <tr>
+        <td><label>City</label></td>
+        <td><input type="text" id="city"></td>
+        <td><span id="cityError"></span></td>
+      </tr>
+      <tr>
+        <td><label>State</label></td>
+        <td colspan="2">
+          <select id="state">
+            <option value="">Please select your state</option>
+            <option value="AP">Andhra Pradesh</option>
+            <option value="TS">Telangana</option>
+            <option value="TN">Tamil Nadu</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Do you have hosting?</label></td>
+        <td colspan="2">
+          <input type="radio" name="hosting" value="yes"> Yes
+          <input type="radio" name="hosting" value="no"> No
+        </td>
+      </tr>
+      <tr>
+        <td><label>Project Description</label></td>
+        <td colspan="2"><textarea id="description"></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="2"><button type="submit">Send</button></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      function checkField(id, errorId, message) {
+        const field = document.getElementById(id);
+        const error = document.getElementById(errorId);
+        if (!field.value.trim()) {
+          error.textContent = message;
+          error.style.color = "red";
+          field.style.border = "2px solid red";
+          valid = false;
+        } else {
+          error.textContent = "";
+          field.style.border = "";
+        }
+      }
+
+      checkField("firstName", "firstNameError", "Please supply your first name");
+      checkField("lastName", "lastNameError", "Please supply your last name");
+      checkField("email", "emailError", "Please supply your email address");
+      checkField("phone", "phoneError", "Please supply your phone number");
+      checkField("address", "addressError", "Please supply your street address");
+      checkField("city", "cityError", "Please supply your city");
+
+      return valid;
+    }
+  </script>
+
+</body>
+</html>
